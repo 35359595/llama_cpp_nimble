@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v glslangValidator >/dev/null 2>&1; then
+  echo "glslangValidator not found. Install glslang or provide a real glslc." >&2
+  exit 1
+fi
+
+out_path=""
+stage=""
+target_env=""
+passthrough=()
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -o)
+      out_path="${2:-}"
+      shift 2
+      ;;
+    -fshader-stage=*)
+      stage="${1#-fshader-stage=}"
+      shift
+      ;;
+    --target-env=*)
+      target_env="${1#--target-env=}"
+      shift
+      ;;
+    --target-env)
+      target_env="${2:-}"
+      shift 2
+      ;;
+    *)
+      passthrough+=("$1")
+      shift
+      ;;
+  esac
+done
+
+case "$stage" in
+  compute) stage="comp" ;;
+  vertex) stage="vert" ;;
+  fragment) stage="frag" ;;
+esac
+
+cmd=(glslangValidator -V)
+if [ -n "$stage" ]; then
+  cmd+=("-S" "$stage")
+fi
+if [ -n "$target_env" ]; then
+  cmd+=("--target-env" "$target_env")
+fi
+cmd+=("${passthrough[@]}")
+
+if [ -z "$out_path" ]; then
+  "${cmd[@]}"
+  exit 0
+fi
+
+if [ "$out_path" = "-" ]; then
+  tmp_out="$(mktemp)"
+  "${cmd[@]}" -o "$tmp_out"
+  cat "$tmp_out"
+  rm -f "$tmp_out"
+else
+  "${cmd[@]}" -o "$out_path"
+fi
