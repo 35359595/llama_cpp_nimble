@@ -15,6 +15,7 @@ let buildDir = llamaDir / "build"
 when defined(linux):
   switch("passL", "-L" & buildDir / "src")
   switch("passL", "-L" & buildDir / "ggml" / "src")
+  switch("passL", "-L" & buildDir / "ggml" / "src" / "ggml-vulkan")
   switch("passL", "-lllama")
   switch("passL", "-lggml")
   switch("passL", "-lggml-cpu")

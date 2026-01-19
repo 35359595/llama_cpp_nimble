@@ -38,6 +38,7 @@ proc mr_model_params_set_gpu_layers*(params: MrModelParams, n_gpu_layers: cint) 
 proc mr_model_params_set_main_gpu*(params: MrModelParams, main_gpu: cint) {.importc, header: "llama_cpp_glue.h".}
 proc mr_model_params_set_use_mmap*(params: MrModelParams, use_mmap: bool) {.importc, header: "llama_cpp_glue.h".}
 proc mr_model_params_set_use_mlock*(params: MrModelParams, use_mlock: bool) {.importc, header: "llama_cpp_glue.h".}
+proc mr_model_params_set_use_direct_io*(params: MrModelParams, use_direct_io: bool) {.importc, header: "llama_cpp_glue.h".}
 
 proc mr_context_params_new*(): MrContextParams {.importc, header: "llama_cpp_glue.h".}
 proc mr_context_params_free*(params: MrContextParams) {.importc, header: "llama_cpp_glue.h".}

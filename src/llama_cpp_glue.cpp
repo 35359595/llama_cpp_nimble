@@ -65,6 +65,13 @@ void mr_model_params_set_use_mlock(struct mr_model_params * params, bool use_mlo
     params->params.use_mlock = use_mlock;
 }
 
+void mr_model_params_set_use_direct_io(struct mr_model_params * params, bool use_direct_io) {
+    if (!params) {
+        return;
+    }
+    params->params.use_direct_io = use_direct_io;
+}
+
 struct mr_context_params * mr_context_params_new(void) {
     mr_context_params * params = new mr_context_params();
     params->params = llama_context_default_params();

@@ -34,6 +34,7 @@ void mr_model_params_set_gpu_layers(struct mr_model_params * params, int32_t n_g
 void mr_model_params_set_main_gpu(struct mr_model_params * params, int32_t main_gpu);
 void mr_model_params_set_use_mmap(struct mr_model_params * params, bool use_mmap);
 void mr_model_params_set_use_mlock(struct mr_model_params * params, bool use_mlock);
+void mr_model_params_set_use_direct_io(struct mr_model_params * params, bool use_direct_io);
 
 struct mr_context_params * mr_context_params_new(void);
 void mr_context_params_free(struct mr_context_params * params);
