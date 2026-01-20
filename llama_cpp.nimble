@@ -6,3 +6,4 @@ license       = "MIT"
 
 # Directories
 srcDir = "src"
+installDirs = @["src", "scripts"]
