@@ -4,6 +4,7 @@ const thisDir = currentSourcePath().parentDir()
 const vendorDir = thisDir / ".." / "vendor" / "llama.cpp"
 const includeDir = vendorDir / "include"
 const ggmlIncludeDir = vendorDir / "ggml" / "include"
+const buildDir = vendorDir / "build"
 
 {.passC: "-I" & thisDir.}
 {.passC: "-I" & includeDir.}
@@ -13,6 +14,19 @@ const ggmlIncludeDir = vendorDir / "ggml" / "include"
 when defined(linux):
   {.passC: "-std=c++17".}
   {.passL: "-lstdc++".}
+  {.passL: "-L" & buildDir / "src".}
+  {.passL: "-L" & buildDir / "ggml" / "src".}
+  {.passL: "-L" & buildDir / "ggml" / "src" / "ggml-vulkan".}
+  {.passL: "-lllama".}
+  {.passL: "-lggml".}
+  {.passL: "-lggml-cpu".}
+  {.passL: "-lggml-base".}
+  {.passL: "-lggml-vulkan".}
+  {.passL: "-lvulkan".}
+  {.passL: "-fopenmp".}
+  {.passL: "-lpthread".}
+  {.passL: "-ldl".}
+  {.passL: "-lm".}
 
 type
   MrModelParams* = pointer
