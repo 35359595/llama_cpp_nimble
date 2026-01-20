@@ -1,7 +1,7 @@
 import std/os
 
 const thisDir = currentSourcePath().parentDir()
-const vendorDir = thisDir / ".." / "vendor" / "llama.cpp"
+const vendorDir = thisDir / "vendor" / "llama.cpp"
 const includeDir = vendorDir / "include"
 const ggmlIncludeDir = vendorDir / "ggml" / "include"
 const buildDir = vendorDir / "build"

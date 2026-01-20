@@ -2,9 +2,6 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-if [ ! -f "$ROOT_DIR/llama_cpp.nimble" ]; then
-  ROOT_DIR="$(cd "$ROOT_DIR/.." && pwd)"
-fi
 LLAMA_DIR="$ROOT_DIR/vendor/llama.cpp"
 BUILD_DIR="$LLAMA_DIR/build"
 

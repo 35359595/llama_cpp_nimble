@@ -5,5 +5,4 @@ description   = "Minimal llama.cpp glue bindings for Nim"
 license       = "MIT"
 
 # Directories
-srcDir = "src"
-installDirs = @["."]
+skipDirs = @["vendor"]
