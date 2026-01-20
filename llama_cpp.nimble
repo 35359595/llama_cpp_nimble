@@ -1,5 +1,5 @@
 # Package
-version       = "0.1.2"
+version       = "0.1.3"
 author        = "micro_runner"
 description   = "Minimal llama.cpp glue bindings for Nim"
 license       = "MIT"

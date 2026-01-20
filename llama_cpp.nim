@@ -6,6 +6,10 @@ const includeDir = vendorDir / "include"
 const ggmlIncludeDir = vendorDir / "ggml" / "include"
 const buildDir = vendorDir / "build"
 
+static:
+  if not fileExists(includeDir / "llama.h"):
+    {.error: "llama.cpp headers not found. Run scripts/build_llama.sh in the llama_cpp package before building."}
+
 {.passC: "-I" & thisDir.}
 {.passC: "-I" & includeDir.}
 {.passC: "-I" & ggmlIncludeDir.}
